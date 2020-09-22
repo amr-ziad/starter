@@ -14,6 +14,8 @@ return [
     */
 "hello gus " => 'WELLCOM BRO',
 "wellcom" => 'WELLCOM ',
+"offer name required"=>'offer name Required',
+"offer name must unique"=>'offer name must unique',
 
 
 ];

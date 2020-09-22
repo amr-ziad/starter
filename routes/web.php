@@ -3,6 +3,7 @@
 use App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
@@ -115,3 +116,18 @@ Route::get('/', function () {
     return view('landing');
 });
 
+Route::get('/redirect/{service}','SocialController@redirect');
+Route::get('/callback/{service}','SocialController@callback');
+
+//Route::get('fillable','NewsController@getoffers');
+Route::group(['prefix' =>LaravelLocalization::setLocale(),'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+], function () {
+Route::group(['prefix' => 'offers'], function () {
+//Route::get('store', 'NewsController@store');
+//LaravelLocalization::setLocale() تقوم بمعرفة ar or en تلقائي
+//	'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+
+    Route::get('create','NewsController@create');
+});
+Route::post('store','NewsController@store')->name('offers.store');
+});

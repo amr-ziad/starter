@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use PhpParser\Node\Stmt\ElseIf_;
 
 class LoginController extends Controller
 {
@@ -40,6 +41,30 @@ class LoginController extends Controller
 
     public function username()
     {
-        return 'email';
+ //just login with mobile & email
+        $login = request()-> input('identify');
+       $field= filter_var($login,FILTER_VALIDATE_EMAIL)? 'email':'mobile';
+       request()->merge([$field=>$login]);
+       return $field;
+
+ //other way login with mobile & email & username
+/*
+ $login = request()-> input('identify');
+       $field='';
+       if(filter_var($login,FILTER_VALIDATE_EMAIL)){
+        $field='email';
+
+       } elseif (filter_var($login,FILTER_VALIDATE_EMAIL)) {
+           $field='mobile';
+           # code...
+       }
+    else {
+            $field='name';
+        }
+
+
+       request()->merge([$field=>$login]);
+       return $field;
+*/
     }
 }
