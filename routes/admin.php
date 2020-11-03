@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin', function () {
-    return 'wellcom admin';
-});
+//Route::get('/admin', function () {
+ //   return 'wellcom admin';
+//});
 
 
 

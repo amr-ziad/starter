@@ -107,7 +107,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                  {{ __('messages.Add Your Offer')}}
+                  {{ __('messages.Update Offer')}}
                 </div>
                 @if (Session::has('success'))
                 <div class="alert alert-success" role="alert">
@@ -116,21 +116,21 @@
                 @endif
 
 
-                <form method="POST" action="{{ route('offers.store') }}" enctype="multipart/form-data">  {{-- url('offers\store') --}}
+                <form method="POST" action="{{ route('offers.update',$offer->id) }}"> {{-- url('offers\store') --}}
                     @csrf
                     {{-- <input type="hidden"name="_token" value="{{ csrf_token() }}"> --}}
-     {{--
-                    @if (LaravelLocalization::getCurrentLocale()=='ar')
+                    {{--
+      @if (LaravelLocalization::getCurrentLocale()=='ar')
                     <div class="form-group">
                         <label for="exampleInputEmail1">{{__('messages.offer name ar')  }}</label>
-                        <input type="text" name="name_ar" class="form-control" autofocus aria-describedby="emailHelp" placeholder="{{__('messages.offer name')  }}">
+                        <input type="text" name="name_ar" value="{{ $offer->name_ar }}" class="form-control" autofocus aria-describedby="emailHelp" placeholder="{{__('messages.offer name')  }}">
                        @error('name_ar')
                        <small class="form-text text-danger">{{ $message }}</small>
                        @enderror
                       </div>
                       <div>
                       <label for="exampleInputPassword1">{{__('messages.offer price')  }}</label>
-                      <input type="text" name="price" class="form-control" autofocus  placeholder="{{__('messages.offer name')  }}">
+                      <input type="text" name="price" value="{{ $offer->price }}" class="form-control" autofocus  placeholder="{{__('messages.offer name')  }}">
                       @error('price')
                       <small class="form-text text-danger">{{ $message }}</small>
                       @enderror
@@ -138,7 +138,7 @@
 
                        <div class="form-group">
                         <label for="exampleInputPassword1">{{__('messages.offer details ar')  }}</label>
-                        <input type="text" name="details_ar" class="form-control" autofocus  placeholder="{{__('messages.offer details')  }}">
+                        <input type="text" name="details_ar" value="{{ $offer->details_ar }}" class="form-control" autofocus  placeholder="{{__('messages.offer details')  }}">
                         @error('details_ar')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -147,7 +147,7 @@
                       @else
                       <div class="form-group">
                         <label for="exampleInputEmail1">{{__('messages.offer name en')  }}</label>
-                        <input type="text" name="name_en" class="form-control" autofocus aria-describedby="emailHelp" placeholder="{{__('messages.offer name')  }}">
+                        <input type="text" name="name_en" value="{{ $offer->name_en }}" class="form-control" autofocus aria-describedby="emailHelp" placeholder="{{__('messages.offer name')  }}">
                        @error('name_en')
                        <small class="form-text text-danger">{{ $message }}</small>
                        @enderror
@@ -155,7 +155,7 @@
 
                       <div>
                       <label for="exampleInputPassword1">{{__('messages.offer price')  }}</label>
-                      <input type="text" name="price" class="form-control" autofocus  placeholder="{{__('messages.offer name')  }}">
+                      <input type="text" name="price" value="{{ $offer->price }}" class="form-control" autofocus  placeholder="{{__('messages.offer name')  }}">
                       @error('price')
                       <small class="form-text text-danger">{{ $message }}</small>
                       @enderror
@@ -163,7 +163,7 @@
 
                        <div class="form-group">
                         <label for="exampleInputPassword1">{{__('messages.offer details en')  }}</label>
-                        <input type="text" name="details_en" class="form-control" autofocus  placeholder="{{__('messages.offer details')  }}">
+                        <input type="text" name="details_en" value="{{ $offer->details_en }}" class="form-control" autofocus  placeholder="{{__('messages.offer details')  }}">
                         @error('details_en')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -171,40 +171,27 @@
 
 
                     @endif
+                    --}}
 
 
---}}
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">{{__('messages.offer photo')  }}</span>
-                        </div>
-                        <div class="custom-file">
-                        <input type="file" name="photo" class="custom-file-input" id="inputGroupFile01"
-                            aria-describedby="inputGroupFileAddon01" autofocus>
-
-                            <label class="custom-file-label" for="inputGroupFile01">Upload your photo</label>
-                        </div>
-                    </div>
-                </div>
 
                      <div class="form-group">
                       <label for="exampleInputEmail1">{{__('messages.offer name ar')  }}</label>
-                      <input type="text" name="name_ar" class="form-control" autofocus aria-describedby="emailHelp" placeholder="{{__('messages.offer name')  }}">
+                      <input type="text" name="name_ar" value="{{ $offer->name_ar}}" class="form-control" autofocus aria-describedby="emailHelp" placeholder="{{__('messages.offer name')  }}">
                      @error('name_ar')
                      <small class="form-text text-danger">{{ $message }}</small>
                      @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">{{__('messages.offer name en')  }}</label>
-                        <input type="text" name="name_en" class="form-control" autofocus aria-describedby="emailHelp" placeholder="{{__('messages.offer name')  }}">
+                        <input type="text" name="name_en" value="{{ $offer->name_en }}" class="form-control" autofocus aria-describedby="emailHelp" placeholder="{{__('messages.offer name')  }}">
                        @error('name_en')
                        <small class="form-text text-danger">{{ $message }}</small>
                        @enderror
                       </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">{{__('messages.offer price')  }}</label>
-                      <input type="text" name="price" class="form-control" autofocus  placeholder="{{__('messages.offer price')  }}">
+                      <input type="text" name="price" value="{{ $offer->price }}" class="form-control" autofocus  placeholder="{{__('messages.offer name')  }}">
                       @error('price')
                       <small class="form-text text-danger">{{ $message }}</small>
                       @enderror
@@ -212,7 +199,7 @@
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">{{__('messages.offer details ar')  }}</label>
-                        <input type="text" name="details_ar" class="form-control" autofocus  placeholder="{{__('messages.offer details')  }}">
+                        <input type="text" name="details_ar" value="{{ $offer->details_ar }}" class="form-control" autofocus  placeholder="{{__('messages.offer details')  }}">
                         @error('details_ar')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -220,7 +207,7 @@
 
                       <div class="form-group">
                         <label for="exampleInputPassword1">{{__('messages.offer details en')  }}</label>
-                        <input type="text" name="details_en" class="form-control" autofocus  placeholder="{{__('messages.offer details')  }}">
+                        <input type="text" name="details_en" value="{{ $offer->details_en }}" class="form-control" autofocus  placeholder="{{__('messages.offer details')  }}">
                         @error('details_en')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
